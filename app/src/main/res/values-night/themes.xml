@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.KimikosCanvas" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowBackground">@color/parentBackground</item>
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorPrimaryVariant">@color/primaryLightColor</item>
