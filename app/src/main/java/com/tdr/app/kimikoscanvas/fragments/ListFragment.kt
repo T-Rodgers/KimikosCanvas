@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.tdr.app.kimikoscanvas.R
+import com.tdr.app.kimikoscanvas.adapters.ProductCardAdapter
+import com.tdr.app.kimikoscanvas.canvas.CanvasViewModel
 import com.tdr.app.kimikoscanvas.databinding.ListFragmentBinding
 
 class ListFragment : Fragment() {
@@ -19,7 +23,19 @@ class ListFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment'
+        val viewModel = ViewModelProvider(this).get(CanvasViewModel::class.java)
+        binding.canvasViewModel = viewModel
+        binding.lifecycleOwner = this
+
+        val adapter = ProductCardAdapter()
+        binding.recyclerView.adapter = adapter
+
+        viewModel.canvasList.observe(viewLifecycleOwner, Observer {
+
+            adapter.data = it
+        })
+
         return binding.root
     }
 }
