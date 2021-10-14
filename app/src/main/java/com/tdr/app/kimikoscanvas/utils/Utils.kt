@@ -1,4 +1,4 @@
-package com.tdr.app.kimikoscanvas.fragments.utils
+package com.tdr.app.kimikoscanvas.utils
 
 import java.text.DecimalFormat
 

@@ -29,7 +29,6 @@
                 android:id="@+id/canvas_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:canvasImage=""
                 android:background="@color/primaryLightColor"
                 android:scaleType="centerCrop"
                 android:src="@drawable/kc_logo_black" />
