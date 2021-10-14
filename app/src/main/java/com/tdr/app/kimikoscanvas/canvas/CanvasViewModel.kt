@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class CanvasViewModel() : ViewModel() {
 
-    private lateinit var canvases: MutableList<Canvas>
-
-    private val _canvasList = MutableLiveData<List<Canvas>>()
-    val canvasList: LiveData<List<Canvas>>
-        get() = _canvasList
+    private val _canvases = MutableLiveData<List<Canvas>>()
+    val canvases: LiveData<List<Canvas>>
+        get() = _canvases
 
     private val _navigateToDetails = MutableLiveData<Boolean>()
     val navigateToDetails : LiveData<Boolean>
@@ -24,22 +22,19 @@ class CanvasViewModel() : ViewModel() {
         _navigateToDetails.value = false
     }
 
-    private fun getAllCanvases(): List<Canvas>? {
-        canvases = mutableListOf<Canvas>(
-            Canvas("Sunset_1", 10),
-            Canvas("Sunset_2", 30),
-            Canvas("Sunset_3", 35),
-            Canvas("Sunrise_1", 200),
-            Canvas("Sunrise_2", 5),
-            Canvas("Sunrise_3", 20),
-            Canvas("Public Market", 25),
-            Canvas("La Jolla Shores Hotel", 100),
-            Canvas("Coronado Island", 230),
-            Canvas("Fort Worth Water Gardens", 100)
+    private fun getAllCanvases() {
+       val canvasList = mutableListOf<Canvas>(
+            Canvas(1,"Sunset_1", 10),
+            Canvas(2,"Sunset_2", 30),
+            Canvas(3,"Sunset_3", 35),
+            Canvas(4,"Sunrise_1", 200),
+            Canvas(5,"Sunrise_2", 5),
+            Canvas(6,"Sunrise_3", 20),
+            Canvas(7,"Public Market", 25),
+            Canvas(8,"La Jolla Shores Hotel", 100),
+            Canvas(9,"Coronado Island", 230),
+            Canvas(10,"Fort Worth Water Gardens", 100)
         )
-
-        _canvasList.value = canvases
-
-        return _canvasList.value
+        _canvases.value = canvasList
     }
 }

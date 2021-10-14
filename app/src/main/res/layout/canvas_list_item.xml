@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="canvas"
+            type="com.tdr.app.kimikoscanvas.canvas.Canvas" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/image_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            app:cardElevation="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/canvas_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:canvasImage=""
+                android:background="@color/primaryLightColor"
+                android:scaleType="centerCrop"
+                android:src="@drawable/kc_logo_black" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/canvas_name"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:canvasName="@{canvas}"
+            app:layout_constraintEnd_toEndOf="@id/image_card"
+            app:layout_constraintStart_toStartOf="@id/image_card"
+            app:layout_constraintTop_toBottomOf="@id/image_card" />
+
+        <TextView
+            android:id="@+id/canvas_price"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:canvasPrice="@{canvas}"
+            app:layout_constraintEnd_toEndOf="@id/canvas_name"
+            app:layout_constraintStart_toStartOf="@id/canvas_name"
+            app:layout_constraintTop_toBottomOf="@id/canvas_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
