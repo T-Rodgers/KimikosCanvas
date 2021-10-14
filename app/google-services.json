@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "838463299885",
+    "project_id": "kimikos-canvas-a39b2",
+    "storage_bucket": "kimikos-canvas-a39b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838463299885:android:251aa99d96e30a013eb3a4",
+        "android_client_info": {
+          "package_name": "com.tdr.app.kimikoscanvas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838463299885-a7a1r3ekg8fbb4djf4tubka62o4nqu88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tdr.app.kimikoscanvas",
+            "certificate_hash": "60d3dd94376bfece2ac5b5d05f82171958dc9fad"
+          }
+        },
+        {
+          "client_id": "838463299885-oopvtvo3ppfljfq7qml42j79m2cghvkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRyVjeIkHsPFMr5AkTbXShk4rh40iyBiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838463299885-oopvtvo3ppfljfq7qml42j79m2cghvkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
