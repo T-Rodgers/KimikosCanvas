@@ -50,7 +50,7 @@ class CanvasCardAdapter :
 
 class CanvasCardDiffUtilCallback : DiffUtil.ItemCallback<Canvas>() {
     override fun areItemsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {

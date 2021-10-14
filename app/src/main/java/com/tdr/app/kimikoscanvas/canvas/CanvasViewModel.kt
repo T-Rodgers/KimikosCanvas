@@ -3,16 +3,24 @@ package com.tdr.app.kimikoscanvas.canvas
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class CanvasViewModel() : ViewModel() {
+
+    private val canvasList = mutableListOf<Canvas>()
 
     private val _canvases = MutableLiveData<List<Canvas>>()
     val canvases: LiveData<List<Canvas>>
         get() = _canvases
 
+    // TODO (2) Implement navigation for when image is clicked on
     private val _navigateToDetails = MutableLiveData<Boolean>()
-    val navigateToDetails : LiveData<Boolean>
-    get() = _navigateToDetails
+    val navigateToDetails: LiveData<Boolean>
+        get() = _navigateToDetails
 
     init {
         getAllCanvases()
@@ -22,19 +30,25 @@ class CanvasViewModel() : ViewModel() {
         _navigateToDetails.value = false
     }
 
+    // TODO (1) Add more photos to folder and implement navigation for each photoshoot!
     private fun getAllCanvases() {
-       val canvasList = mutableListOf<Canvas>(
-            Canvas(1,"Sunset_1", 10),
-            Canvas(2,"Sunset_2", 30),
-            Canvas(3,"Sunset_3", 35),
-            Canvas(4,"Sunrise_1", 200),
-            Canvas(5,"Sunrise_2", 5),
-            Canvas(6,"Sunrise_3", 20),
-            Canvas(7,"Public Market", 25),
-            Canvas(8,"La Jolla Shores Hotel", 100),
-            Canvas(9,"Coronado Island", 230),
-            Canvas(10,"Fort Worth Water Gardens", 100)
-        )
-        _canvases.value = canvasList
+        viewModelScope.launch {
+            val storage = Firebase.storage
+            val imagesRef =
+                storage.reference.child("images")
+            imagesRef.listAll().addOnSuccessListener {
+                it.items.forEach { item ->
+                    item.downloadUrl.addOnSuccessListener { uri ->
+
+                        canvasList.add(Canvas(uri.toString(), item.name))
+                        _canvases.value = canvasList
+                    }.addOnFailureListener {
+                        Timber.i("Error adding images to list")
+                    }
+                }
+            }.addOnFailureListener {
+                Timber.e("Error retrieving list of images")
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@
     package="com.tdr.app.kimikoscanvas">
 
     <application
+        android:name=".KimikosCanvasApplication"
         android:allowBackup="true"
         android:icon="@mipmap/kc_launcher"
         android:label="@string/app_name"
