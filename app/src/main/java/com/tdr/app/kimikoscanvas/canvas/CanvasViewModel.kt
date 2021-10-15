@@ -35,7 +35,7 @@ class CanvasViewModel() : ViewModel() {
         viewModelScope.launch {
             val storage = Firebase.storage
             val imagesRef =
-                storage.reference.child("images")
+                storage.reference.child("images/landscapes")
             imagesRef.listAll().addOnSuccessListener {
                 it.items.forEach { item ->
                     item.downloadUrl.addOnSuccessListener { uri ->
