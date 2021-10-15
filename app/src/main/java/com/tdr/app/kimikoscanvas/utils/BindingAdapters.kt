@@ -34,7 +34,7 @@ fun setCanvasImage(imgView: ImageView, imgUrl: String?) {
         Glide.with(imgView.context)
             .load(imgUri)
             .apply { RequestOptions()
-                .placeholder(R.drawable.kc_watermark_10_opacity)
+                .placeholder(R.drawable.kc_logo_black)
                 .error(R.drawable.kc_aperture_foreground)}
             .into(imgView)
     }

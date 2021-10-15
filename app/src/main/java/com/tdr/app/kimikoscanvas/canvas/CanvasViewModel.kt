@@ -9,9 +9,14 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class CanvasViewModel() : ViewModel() {
+enum class ImageFolderSelector(val value: String) {
+    PATTENS("images/pattens"),
+    RODGERS("images/rodgers"),
+    LANDSCAPES("images/landscapes"),
+    MYERS("images/myers")
+}
 
-    private val canvasList = mutableListOf<Canvas>()
+class CanvasViewModel() : ViewModel() {
 
     private val _canvases = MutableLiveData<List<Canvas>>()
     val canvases: LiveData<List<Canvas>>
@@ -23,7 +28,7 @@ class CanvasViewModel() : ViewModel() {
         get() = _navigateToDetails
 
     init {
-        getAllCanvases()
+        retrieveCanvasesFromStorage()
     }
 
     fun doneNavigatingToDetails() {
@@ -31,24 +36,29 @@ class CanvasViewModel() : ViewModel() {
     }
 
     // TODO (1) Add more photos to folder and implement navigation for each photoshoot!
-    private fun getAllCanvases() {
+    private fun retrieveCanvasesFromStorage() {
         viewModelScope.launch {
+            val canvasList = mutableListOf<Canvas>()
             val storage = Firebase.storage
             val imagesRef =
-                storage.reference.child("images/landscapes")
+                storage.reference.child(loadRandomImages())
+            Timber.i(loadRandomImages())
             imagesRef.listAll().addOnSuccessListener {
+
                 it.items.forEach { item ->
                     item.downloadUrl.addOnSuccessListener { uri ->
-
                         canvasList.add(Canvas(uri.toString(), item.name))
-                        _canvases.value = canvasList
-                    }.addOnFailureListener {
-                        Timber.i("Error adding images to list")
-                    }
+                    }.addOnCompleteListener { _canvases.value = canvasList }
                 }
             }.addOnFailureListener {
                 Timber.e("Error retrieving list of images")
             }
+            Timber.i("${canvasList.size}")
         }
+    }
+
+    private fun loadRandomImages(): String {
+        return ImageFolderSelector.values().toList().shuffled().first().value
+
     }
 }
