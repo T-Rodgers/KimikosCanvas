@@ -32,7 +32,7 @@
                 android:layout_height="150dp"
                 android:background="@color/primaryLightColor"
                 android:scaleType="centerCrop"
-                app:canvasImage="@{canvas.imgUrl}"
+                app:canvasImage="@{canvas.imageRef}"
                 tools:src="@drawable/kc_logo_black" />
         </com.google.android.material.card.MaterialCardView>
 

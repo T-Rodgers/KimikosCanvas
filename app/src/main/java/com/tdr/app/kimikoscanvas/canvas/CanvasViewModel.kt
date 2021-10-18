@@ -9,12 +9,7 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-enum class ImageFolderSelector(val value: String) {
-    PATTENS("images/pattens"),
-    RODGERS("images/rodgers"),
-    LANDSCAPES("images/landscapes"),
-    MYERS("images/myers")
-}
+const val LANDSCAPES_FOLDER = "images/landscapes"
 
 class CanvasViewModel() : ViewModel() {
 
@@ -28,37 +23,36 @@ class CanvasViewModel() : ViewModel() {
         get() = _navigateToDetails
 
     init {
-        retrieveCanvasesFromStorage()
+        retrieveImagesFromStorage()
     }
 
     fun doneNavigatingToDetails() {
         _navigateToDetails.value = false
     }
 
-    // TODO (1) Add more photos to folder and implement navigation for each photoshoot!
-    private fun retrieveCanvasesFromStorage() {
+
+    private fun retrieveImagesFromStorage() {
         viewModelScope.launch {
             val canvasList = mutableListOf<Canvas>()
             val storage = Firebase.storage
-            val imagesRef =
-                storage.reference.child(loadRandomImages())
-            Timber.i(loadRandomImages())
-            imagesRef.listAll().addOnSuccessListener {
+            val reference =
+                storage.reference.child(LANDSCAPES_FOLDER)
+            reference.listAll().addOnSuccessListener {
 
-                it.items.forEach { item ->
-                    item.downloadUrl.addOnSuccessListener { uri ->
-                        canvasList.add(Canvas(uri.toString(), item.name))
-                    }.addOnCompleteListener { _canvases.value = canvasList }
+                it.items.forEach { imageRef ->
+                    canvasList.add(Canvas(imageRef.name, imageRef))
                 }
-            }.addOnFailureListener {
-                Timber.e("Error retrieving list of images")
+            }.addOnFailureListener { Timber.i("Error retrieving images") }.addOnCompleteListener {
+                _canvases.value = canvasList
             }
-            Timber.i("${canvasList.size}")
         }
     }
 
-    private fun loadRandomImages(): String {
-        return ImageFolderSelector.values().toList().shuffled().first().value
+    // TODO: (1) Link realtime database and storage
+//    private fun retrieveCanvasesFromDatabase(){
+//        viewModelScope.launch {
+//            val canvasList = mutableListOf<Canvas>()
+//        }
+//    }
 
-    }
 }
