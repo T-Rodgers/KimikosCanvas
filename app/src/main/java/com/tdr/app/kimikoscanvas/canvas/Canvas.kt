@@ -1,6 +1,8 @@
 package com.tdr.app.kimikoscanvas.canvas
 
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.storage.StorageReference
 
-data class Canvas(val name: String, val imageRef: StorageReference, val price: String) {
+@IgnoreExtraProperties
+data class Canvas(val name: String? =null, val imageUrl: String? = null, val price: Int? = null) {
 }

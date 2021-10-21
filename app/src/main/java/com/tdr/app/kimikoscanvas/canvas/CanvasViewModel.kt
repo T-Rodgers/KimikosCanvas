@@ -1,5 +1,6 @@
 package com.tdr.app.kimikoscanvas.canvas
 
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,8 @@ import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-const val LANDSCAPES_FOLDER = "images/landscapes"
+//const val IMAGES_PATH = "images/landscapes/"
+const val PRODUCTS_PATH = "canvases"
 
 class CanvasViewModel() : ViewModel() {
 
@@ -24,14 +26,8 @@ class CanvasViewModel() : ViewModel() {
 
     init {
         retrieveImagesFromStorage()
-        // TODO: Grab image from storage to be used when retrieving database item
-        FirebaseUtils().retrieveImages(object: FirebaseUtils.FirebaseServiceCallback{
-            override fun onImageCallback(value: List<StorageReference>) {
-                Timber.i(" Items Retrieved: ${value.size}")
-            }
-
-        })
         Timber.i("CanvasViewModel Initialized")
+
     }
 
     fun doneNavigatingToDetails() {
@@ -41,7 +37,17 @@ class CanvasViewModel() : ViewModel() {
 
     private fun retrieveImagesFromStorage() {
         viewModelScope.launch {
+            FirebaseUtils().retrieveProducts(object : FirebaseUtils.FirebaseServiceCallback{
+                override fun onImageCallback(value: String) {
+                    TODO("Not yet implemented")
+                }
 
+                override fun onProductListCallback(value: List<Canvas>) {
+                    _canvases.value = value
+                    Timber.i("${value.size}")
+                }
+
+            })
         }
     }
 
