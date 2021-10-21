@@ -1,8 +1,6 @@
 package com.tdr.app.kimikoscanvas.utils
 
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -21,19 +19,25 @@ class FirebaseUtils {
 
     fun retrieveProducts(callback: FirebaseServiceCallback) {
         val canvasList = mutableListOf<Canvas>()
-        database.reference.child(PRODUCTS_PATH).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (item in snapshot.children) {
-                    val canvas = item.getValue<Canvas>()
-                    canvasList.add(canvas!!)
-                    database.reference.removeEventListener(this)
+        database.reference.child(PRODUCTS_PATH)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (item in snapshot.children) {
+                        val canvas = item.getValue<Canvas>()
+                        canvasList.add(canvas!!)
+                        removeListener(database, this)
+                    }
+                    callback.onProductListCallback(canvasList)
                 }
-                callback.onProductListCallback(canvasList)
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         Timber.i("${canvasList.size}")
+    }
+
+    fun removeListener(database: FirebaseDatabase, listener: ValueEventListener) {
+        database.reference.child(PRODUCTS_PATH).removeEventListener(listener)
     }
 
     interface FirebaseServiceCallback {

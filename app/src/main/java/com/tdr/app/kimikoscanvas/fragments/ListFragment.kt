@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.CanvasViewModel
@@ -30,6 +31,7 @@ class ListFragment : Fragment() {
 
         val adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener {
             Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
+            this.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment())
         })
         binding.recyclerView.adapter = adapter
 
