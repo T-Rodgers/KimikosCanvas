@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +28,9 @@ class ListFragment : Fragment() {
         binding.canvasViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = CanvasCardAdapter()
+        val adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener {
+            Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
+        })
         binding.recyclerView.adapter = adapter
 
         return binding.root

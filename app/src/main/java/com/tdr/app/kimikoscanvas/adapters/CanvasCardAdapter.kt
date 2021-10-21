@@ -8,14 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tdr.app.kimikoscanvas.canvas.Canvas
 import com.tdr.app.kimikoscanvas.databinding.CanvasListItemBinding
 
-class CanvasCardAdapter :
+class CanvasCardAdapter(private val clickListener: OnClickListener) :
     ListAdapter<Canvas, CanvasCardAdapter.ProductCardViewHolder>(CanvasCardDiffUtilCallback()) {
-
-    var data = listOf<Canvas>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -26,7 +20,9 @@ class CanvasCardAdapter :
 
     override fun onBindViewHolder(holder: ProductCardViewHolder, position: Int) {
         val item = getItem(position)
-
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
@@ -46,15 +42,19 @@ class CanvasCardAdapter :
             }
         }
     }
-}
 
-class CanvasCardDiffUtilCallback : DiffUtil.ItemCallback<Canvas>() {
-    override fun areItemsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {
-        return oldItem.name == newItem.name
+    class OnClickListener(val clickListener: (canvas: Canvas) -> Unit) {
+        fun onClick(canvas: Canvas) = clickListener(canvas)
     }
 
-    override fun areContentsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {
-        return oldItem == newItem
+    class CanvasCardDiffUtilCallback : DiffUtil.ItemCallback<Canvas>() {
+        override fun areItemsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Canvas, newItem: Canvas): Boolean {
+            return oldItem == newItem
+        }
     }
 
 }

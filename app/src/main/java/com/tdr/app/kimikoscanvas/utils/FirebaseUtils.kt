@@ -19,18 +19,17 @@ class FirebaseUtils {
 //        storage.reference.child(IMAGES_PATH)
 //    private val productRef = database.reference.child(PRODUCTS_PATH)
 
-    // TODO: RetrieveProduct from Firebase RealtimeDatabase
     fun retrieveProducts(callback: FirebaseServiceCallback) {
         val canvasList = mutableListOf<Canvas>()
-        database.reference.child(PRODUCTS_PATH).addValueEventListener(object : ValueEventListener {
+        database.reference.child(PRODUCTS_PATH).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {
                     val canvas = item.getValue<Canvas>()
                     canvasList.add(canvas!!)
+                    database.reference.removeEventListener(this)
                 }
                 callback.onProductListCallback(canvasList)
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
         })
