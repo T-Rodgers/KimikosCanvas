@@ -30,6 +30,10 @@ class CanvasViewModel() : ViewModel() {
 
     }
 
+    fun onNavigateToDetails() {
+        _navigateToDetails.value = true
+    }
+
     fun doneNavigatingToDetails() {
         _navigateToDetails.value = false
     }

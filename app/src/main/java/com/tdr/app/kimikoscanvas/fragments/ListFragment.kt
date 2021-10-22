@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.tdr.app.kimikoscanvas.R
@@ -30,8 +31,15 @@ class ListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener {
-            Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
-            this.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment())
+            canvas -> viewModel.onNavigateToDetails()
+            viewModel.navigateToDetails.observe(viewLifecycleOwner, Observer {
+                if (it) {
+                    Toast.makeText(requireContext(), canvas.name, Toast.LENGTH_SHORT).show()
+                    this.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment())
+                    viewModel.doneNavigatingToDetails()
+                }
+            })
+
         })
         binding.recyclerView.adapter = adapter
 
