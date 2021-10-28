@@ -21,12 +21,11 @@ class MainActivity : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         drawerLayout = binding.drawerLayout
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
-
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+                NavigationUI.setupWithNavController(binding.navView, navController)
 
         navController.addOnDestinationChangedListener {
                 controller: NavController, destination: NavDestination, arguments: Bundle? ->
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {

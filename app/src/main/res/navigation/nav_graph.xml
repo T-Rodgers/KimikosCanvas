@@ -5,10 +5,10 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/listFragment">
     <fragment
-        tools:layout="@layout/list_fragment"
         android:id="@+id/listFragment"
         android:name="com.tdr.app.kimikoscanvas.fragments.ListFragment"
-        android:label="ListFragment" >
+        android:label="Canvas List"
+        tools:layout="@layout/list_fragment">
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -16,6 +16,15 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.tdr.app.kimikoscanvas.fragments.DetailsFragment"
-        android:label="details_fragment"
-        tools:layout="@layout/details_fragment" />
+        android:label="Details"
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="selectedImage"
+            app:argType="com.tdr.app.kimikoscanvas.canvas.Canvas" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.tdr.app.kimikoscanvas.fragments.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/about_fragment" />
 </navigation>
