@@ -56,7 +56,6 @@ class FirebaseUtils {
      * use them in our viewModel
      */
     interface FirebaseServiceCallback {
-        fun onImageCallback(value: String)
         fun onProductListCallback(value: List<Canvas>)
 
     }

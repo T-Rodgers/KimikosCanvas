@@ -8,10 +8,18 @@ import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-//const val IMAGES_PATH = "images/landscapes/"
 const val PRODUCTS_PATH = "canvases"
+enum class FirebaseApiStatus{
+    DONE,
+    LOADING,
+    ERROR
+}
 
 class CanvasViewModel() : ViewModel() {
+
+    private val _status = MutableLiveData<FirebaseApiStatus>()
+    val status : LiveData<FirebaseApiStatus>
+    get() = _status
 
     private val _canvases = MutableLiveData<List<Canvas>>()
     val canvases: LiveData<List<Canvas>>
@@ -22,7 +30,7 @@ class CanvasViewModel() : ViewModel() {
         get() = _navigateToDetails
 
     init {
-        retrieveImagesFromStorage()
+        retrieveImagesFromDatabase()
         Timber.i("CanvasViewModel Initialized")
 
     }
@@ -35,19 +43,22 @@ class CanvasViewModel() : ViewModel() {
         _navigateToDetails.value = false
     }
 
-
-    private fun retrieveImagesFromStorage() {
+    private fun retrieveImagesFromDatabase() {
         viewModelScope.launch {
-            FirebaseUtils().retrieveProducts(object : FirebaseUtils.FirebaseServiceCallback{
-                override fun onImageCallback(value: String) {
-                    // For future implementation of ImageViewing
-                }
+            _status.value = FirebaseApiStatus.LOADING
+            try {
+                FirebaseUtils().retrieveProducts(object : FirebaseUtils.FirebaseServiceCallback {
+                    override fun onProductListCallback(value: List<Canvas>) {
+                        _canvases.value = value
+                        Timber.i("${value.size}")
+                    }
+                })
+                _status.value = FirebaseApiStatus.DONE
+            } catch (e: Exception) {
+                _status.value = FirebaseApiStatus.ERROR
+                _canvases.value = ArrayList()
+            }
 
-                override fun onProductListCallback(value: List<Canvas>) {
-                    _canvases.value = value
-                    Timber.i("${value.size}")
-                }
-            })
         }
     }
 }

@@ -1,15 +1,16 @@
 package com.tdr.app.kimikoscanvas.utils
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.firebase.storage.StorageReference
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.Canvas
+import com.tdr.app.kimikoscanvas.canvas.FirebaseApiStatus
 
 
 @BindingAdapter("canvasName")
@@ -25,6 +26,23 @@ fun TextView.setFormattedPrice(item: Canvas?) {
         text = item.price?.let { convertToCurrency(item.price) }
     }
 
+}
+
+@BindingAdapter("status")
+fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus) {
+    when (status) {
+        FirebaseApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        FirebaseApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_baseline_error_24)
+        }
+        FirebaseApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
 }
 
 @BindingAdapter("canvasImage")
