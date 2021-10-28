@@ -20,6 +20,9 @@ class DetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.details_fragment, container, false)
 
+        val canvas = DetailsFragmentArgs.fromBundle(requireArguments()).selectedImage
+        binding.canvas = canvas
+
         return binding.root
     }
 }

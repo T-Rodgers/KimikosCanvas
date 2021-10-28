@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="canvas"
+            type="com.tdr.app.kimikoscanvas.canvas.Canvas" />
 
     </data>
 
@@ -13,6 +16,7 @@
         tools:context=".fragments.DetailsFragment">
 
         <ImageView
+            app:canvasImage="@{canvas}"
             android:id="@+id/canvas_image"
             android:layout_width="match_parent"
             android:layout_height="250dp"

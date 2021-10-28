@@ -35,7 +35,7 @@ class ListFragment : Fragment() {
             viewModel.navigateToDetails.observe(viewLifecycleOwner, Observer {
                 if (it) {
                     Toast.makeText(requireContext(), canvas.name, Toast.LENGTH_SHORT).show()
-                    this.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment())
+                    this.findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(canvas))
                     viewModel.doneNavigatingToDetails()
                 }
             })
