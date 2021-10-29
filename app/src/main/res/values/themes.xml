@@ -12,6 +12,14 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
-        <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/brawler</item>
+    </style>
+
+    <style name="TextView.Header" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/brawler</item>
+    </style>
+
+    <style name="TextView.SubHeader" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/brawler</item>
     </style>
 </resources>
