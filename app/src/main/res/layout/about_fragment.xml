@@ -2,32 +2,98 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.AboutFragment"
-    android:padding="12dp"
-    android:background="@color/parentBackground">
 
-    <com.google.android.material.card.MaterialCardView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardElevation="12dp">
+        tools:context=".fragments.AboutFragment">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:background="@color/primaryDarkColor"
-            android:layout_height="100dp"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/kc_logo_white" />
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/large_margin"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="@dimen/large_elevation">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.card.MaterialCardView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-</FrameLayout>
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/secondaryDarkColor"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/kc_logo_white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/photographer_header"
+                    style="@style/TextView.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/photographer_header"
+                    app:layout_constraintBottom_toTopOf="@+id/photographer_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/photographer_name"
+                    style="@style/TextView.SubHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:text="@string/amy_kimiko_rodgers"
+                    app:layout_constraintBottom_toTopOf="@+id/website_header"
+                    app:layout_constraintEnd_toEndOf="@+id/photographer_header"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/photographer_header"
+                    app:layout_constraintTop_toBottomOf="@+id/photographer_header" />
+
+                <TextView
+                    android:id="@+id/website_header"
+                    style="@style/TextView.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_margin"
+                    android:text="@string/portfolio_header"
+                    app:layout_constraintBottom_toTopOf="@+id/website_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/photographer_name" />
+
+                <TextView
+                    android:id="@+id/website_text"
+                    style="@style/TextView.SubHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:autoLink="web"
+                    android:gravity="center_horizontal"
+                    android:linksClickable="true"
+                    android:text="@string/web_link"
+                    android:textColorLink="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/website_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </FrameLayout>
 </layout>
