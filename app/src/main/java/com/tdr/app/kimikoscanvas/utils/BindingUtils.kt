@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.Canvas
@@ -29,7 +28,7 @@ fun TextView.setFormattedPrice(item: Canvas?) {
 }
 
 @BindingAdapter("status")
-fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus) {
+fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus?) {
     when (status) {
         FirebaseApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
@@ -50,11 +49,8 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
     item?.let {
         Glide.with(imgView.context)
             .load(item.imageUrl)
-            .apply {
-                RequestOptions()
-                    .placeholder(R.drawable.kc_logo_black)
-                    .error(R.drawable.kc_aperture_foreground)
-            }
+            .placeholder(R.drawable.kc_logo_black)
+            .error(R.drawable.ic_baseline_error_24)
             .into(imgView)
     }
 }
