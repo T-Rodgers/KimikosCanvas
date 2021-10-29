@@ -48,12 +48,13 @@ class CanvasViewModel() : ViewModel() {
             _status.value = FirebaseApiStatus.LOADING
             try {
                 FirebaseUtils().retrieveProducts(object : FirebaseUtils.FirebaseServiceCallback {
-                    override fun onProductListCallback(value: List<Canvas>) {
-                        _canvases.value = value
-                        Timber.i("${value.size}")
+                    override fun onProductListCallback(retrievedList: List<Canvas>) {
+                        _canvases.value = retrievedList
+                        Timber.i("${retrievedList.size}")
+                        _status.value = FirebaseApiStatus.DONE
                     }
                 })
-                _status.value = FirebaseApiStatus.DONE
+
             } catch (e: Exception) {
                 _status.value = FirebaseApiStatus.ERROR
                 _canvases.value = ArrayList()
