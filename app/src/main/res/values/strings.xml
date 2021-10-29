@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Kimikos Canvas</string>
     <string name="about">About</string>
+    <string name="amy_kimiko_rodgers">Amy \"Kimiko\" Rodgers</string>
+    <string name="photographer_header">Photographer:</string>
+    <string name="portfolio_header">Portfolio:</string>
+    <string name="web_link">Kimikos Canvas Photography\n <a href="https://kimikoscanvas.squarespace.com/" />kimikoscanvas.squarespace.com</string>
 </resources>
