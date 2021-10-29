@@ -13,31 +13,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.DetailsFragment">
+        tools:context=".fragments.DetailsFragment"
+        android:background="@android:color/black">
 
         <ImageView
             android:id="@+id/canvas_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_image_height"
-            android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
-            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
             app:canvasImage="@{canvas}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:canvasName="@{canvas}"
-            tools:text="Dripping Branch"
-            app:layout_constraintEnd_toEndOf="@+id/canvas_image"
-            app:layout_constraintStart_toStartOf="@+id/canvas_image"
-            app:layout_constraintTop_toBottomOf="@+id/canvas_image" />
+<!--        <TextView-->
+<!--            android:layout_marginTop="@dimen/medium_margin"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:canvasName="@{canvas}"-->
+<!--            tools:text="Dripping Branch"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/canvas_image"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/canvas_image"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/canvas_image" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

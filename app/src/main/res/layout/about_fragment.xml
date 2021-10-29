@@ -16,6 +16,8 @@
             app:cardElevation="@dimen/large_elevation">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:id="@+id/about_info_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -23,10 +25,10 @@
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="100dp"
                     android:background="@color/secondaryDarkColor"
                     android:scaleType="centerInside"
-                    android:src="@drawable/kc_logo_white"
+                    android:src="@drawable/kc_aperture_foreground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +38,7 @@
                     style="@style/TextView.Header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_margin"
                     android:text="@string/photographer_header"
                     app:layout_constraintBottom_toTopOf="@+id/photographer_name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -55,45 +58,50 @@
                     app:layout_constraintEnd_toEndOf="@+id/photographer_header"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="@+id/photographer_header"
-                    app:layout_constraintTop_toBottomOf="@+id/photographer_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/photographer_header"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/website_header"
                     style="@style/TextView.Header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginTop="32dp"
                     android:text="@string/portfolio_header"
                     app:layout_constraintBottom_toTopOf="@+id/website_text"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/photographer_name"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/photographer_name"
                     app:layout_constraintTop_toBottomOf="@+id/photographer_name" />
 
                 <TextView
                     android:id="@+id/website_text"
                     style="@style/TextView.SubHeader"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/medium_margin"
                     android:layout_marginTop="@dimen/small_margin"
-                    android:layout_marginEnd="@dimen/medium_margin"
                     android:autoLink="web"
                     android:gravity="center_horizontal"
                     android:linksClickable="true"
                     android:text="@string/web_link"
                     android:textColorLink="@android:color/black"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView"
+                    app:layout_constraintEnd_toEndOf="@id/website_header"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/website_header"
+                    app:layout_constraintTop_toBottomOf="@+id/website_header" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:src="@drawable/kc_logo_black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/website_header" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </com.google.android.material.card.MaterialCardView>
-
-
     </FrameLayout>
 </layout>

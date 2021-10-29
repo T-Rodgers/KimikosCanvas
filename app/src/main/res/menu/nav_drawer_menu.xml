@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:icon="@drawable/ic_baseline_camera_24"
         android:id="@+id/aboutFragment"
         android:title="@string/about" />
 </menu>
