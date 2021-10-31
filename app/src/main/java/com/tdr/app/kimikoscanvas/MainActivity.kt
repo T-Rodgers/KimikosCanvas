@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.tdr.app.kimikoscanvas.databinding.ActivityMainBinding
+import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 NavigationUI.setupWithNavController(binding.navView, navController)
 
         navController.addOnDestinationChangedListener {
-                controller: NavController, destination: NavDestination, arguments: Bundle? ->
+                _: NavController, destination: NavDestination, _: Bundle? ->
             if (destination.id == navController.graph.startDestination) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             } else {
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    // Remove event listener attached to database reference
+    override fun onDestroy() {
+        super.onDestroy()
+        FirebaseUtils().removeListener()
     }
 
     override fun onSupportNavigateUp(): Boolean {

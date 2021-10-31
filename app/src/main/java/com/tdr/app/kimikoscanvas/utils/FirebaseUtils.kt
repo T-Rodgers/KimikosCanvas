@@ -2,7 +2,6 @@ package com.tdr.app.kimikoscanvas.utils
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -15,39 +14,42 @@ import timber.log.Timber
 class FirebaseUtils {
     private val storage = Firebase.storage
     private val database = Firebase.database
-
-//    private val imageRef =
-//        storage.reference.child(IMAGES_PATH)
-//    private val productRef = database.reference.child(PRODUCTS_PATH)
+    private lateinit var listener: ValueEventListener
 
     /**
      * Retrieves list of canvases from database reference.
      */
     fun retrieveProducts(callback: FirebaseServiceCallback) {
-        val canvasList = mutableListOf<Canvas>()
-        database.reference.child(PRODUCTS_PATH)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (item in snapshot.children) {
-                        val canvas = item.getValue<Canvas>()
-                        canvasList.add(canvas!!)
-                        removeListener(database, this)
-                    }
-                    callback.onProductListCallback(canvasList)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
-        Timber.i("${canvasList.size}")
+        database.reference.child(PRODUCTS_PATH).orderByKey().addValueEventListener(createListener(callback))
     }
 
+    fun createListener(callback: FirebaseServiceCallback): ValueEventListener {
+        val canvasList = mutableListOf<Canvas>()
+        listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (item in snapshot.children) {
+                    val canvas = item.getValue<Canvas>()
+                    canvas?.let { canvasList.add(it) }
+                    callback.onProductListCallback(canvasList)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        return listener
+    }
 
     /**
      * Closes even listener that was used to retrieve any changes to database
      */
-    fun removeListener(database: FirebaseDatabase, listener: ValueEventListener) {
-        database.reference.child(PRODUCTS_PATH).removeEventListener(listener)
+    fun removeListener() {
+        if (this::listener.isInitialized) {
+            database.reference.child(PRODUCTS_PATH).removeEventListener(listener)
+        }
+        Timber.i(this::listener.isInitialized.toString())
     }
 
 
