@@ -10,4 +10,7 @@
 
     <dimen name="large_elevation">16dp</dimen>
     <dimen name="detail_image_height">250dp</dimen>
+    <dimen name="xlarge_margin">32dp</dimen>
+    <dimen name="logo_height">100dp</dimen>
+    <dimen name="card_radius">6dp</dimen>
 </resources>
