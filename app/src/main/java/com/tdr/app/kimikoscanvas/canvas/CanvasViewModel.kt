@@ -15,7 +15,7 @@ enum class FirebaseApiStatus{
     ERROR
 }
 
-class CanvasViewModel() : ViewModel() {
+class CanvasViewModel : ViewModel() {
 
     private val _status = MutableLiveData<FirebaseApiStatus>()
     val status : LiveData<FirebaseApiStatus>
@@ -48,9 +48,9 @@ class CanvasViewModel() : ViewModel() {
             _status.value = FirebaseApiStatus.LOADING
             try {
                 FirebaseUtils().retrieveProducts(object : FirebaseUtils.FirebaseServiceCallback {
-                    override fun onProductListCallback(retrievedList: List<Canvas>) {
-                        _canvases.value = retrievedList
-                        Timber.i("${retrievedList.size}")
+                    override fun onProductListCallback(value: List<Canvas>) {
+                        _canvases.value = value
+                        Timber.i("${value.size}")
                         _status.value = FirebaseApiStatus.DONE
                     }
                 })
