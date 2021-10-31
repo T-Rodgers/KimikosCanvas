@@ -21,7 +21,8 @@
             android:id="@+id/image_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="12dp"
+            app:cardElevation="@dimen/large_elevation"
+            app:cardCornerRadius="@dimen/card_radius"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
