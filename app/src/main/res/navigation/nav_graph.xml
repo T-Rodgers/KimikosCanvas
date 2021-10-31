@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.tdr.app.kimikoscanvas.fragments.ListFragment"
-        android:label="Canvas List"
+        android:label="@string/app_name"
         tools:layout="@layout/list_fragment">
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.tdr.app.kimikoscanvas.fragments.DetailsFragment"
-        android:label="Details"
+        android:label="@string/app_name"
         tools:layout="@layout/details_fragment">
         <argument
             android:name="selectedImage"
