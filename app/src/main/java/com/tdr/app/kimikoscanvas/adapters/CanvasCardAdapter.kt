@@ -56,5 +56,4 @@ class CanvasCardAdapter(private val clickListener: OnClickListener) :
             return oldItem == newItem
         }
     }
-
 }

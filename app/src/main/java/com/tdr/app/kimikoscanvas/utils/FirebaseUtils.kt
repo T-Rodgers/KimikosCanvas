@@ -1,5 +1,6 @@
 package com.tdr.app.kimikoscanvas.utils
 
+import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -20,7 +21,8 @@ class FirebaseUtils {
      * Retrieves list of canvases from database reference.
      */
     fun retrieveProducts(callback: FirebaseServiceCallback) {
-        database.reference.child(PRODUCTS_PATH).orderByKey().addValueEventListener(createListener(callback))
+        database.reference.child(PRODUCTS_PATH).orderByKey()
+            .addValueEventListener(createListener(callback))
     }
 
     fun createListener(callback: FirebaseServiceCallback): ValueEventListener {
@@ -35,7 +37,7 @@ class FirebaseUtils {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.e("FirebaseUtils", error.message)
             }
 
         }

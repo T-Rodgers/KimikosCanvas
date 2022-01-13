@@ -6,4 +6,6 @@
     <string name="portfolio_header">Portfolio:</string>
     <string name="web_link">Kimikos Canvas Photography\n <a href="https://kimikoscanvas.squarespace.com/" />kimikoscanvas.squarespace.com</string>
     <string name="logo_content_description">App Logo</string>
+    <string name="login_btn">Login</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
