@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.KimikosCanvas" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.KimikosCanvas" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -12,14 +12,14 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
-        <item name="fontFamily">@font/brawler</item>
+        <item name="fontFamily">@font/alef_bold</item>
     </style>
 
     <style name="TextView.Header" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/brawler</item>
+        <item name="fontFamily">@font/alef_bold</item>
     </style>
 
     <style name="TextView.SubHeader" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/brawler</item>
+        <item name="fontFamily">@font/alef_bold</item>
     </style>
 </resources>
