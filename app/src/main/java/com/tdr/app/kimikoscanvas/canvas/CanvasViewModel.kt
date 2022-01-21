@@ -43,7 +43,7 @@ class CanvasViewModel : ViewModel() {
         _navigateToDetails.value = false
     }
 
-    private fun retrieveImagesFromDatabase() {
+    fun retrieveImagesFromDatabase() {
         viewModelScope.launch {
             _status.value = FirebaseApiStatus.LOADING
             try {
