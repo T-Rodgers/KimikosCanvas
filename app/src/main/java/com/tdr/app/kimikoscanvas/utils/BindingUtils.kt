@@ -36,7 +36,7 @@ fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus?) {
         }
         FirebaseApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_baseline_error_24)
+            statusImageView.setImageResource(R.drawable.ic_baseline_error_48)
         }
         FirebaseApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
@@ -50,7 +50,7 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
         Glide.with(imgView.context)
             .load(item.imageUrl)
             .placeholder(R.drawable.kc_logo_black)
-            .error(R.drawable.ic_baseline_error_24)
+            .error(R.drawable.ic_baseline_error_48)
             .into(imgView)
     }
 }
