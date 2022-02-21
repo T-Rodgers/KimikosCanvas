@@ -37,7 +37,7 @@ class FirebaseUtils {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("FirebaseUtils", error.message)
+                Timber.e(error.message)
             }
 
         }
