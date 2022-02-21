@@ -9,5 +9,5 @@
   <color name="primaryTextColor">#000000</color>
   <color name="secondaryTextColor">#000000</color>
 
-  <color name="parentBackground">#b0bec5</color>
+  <color name="parentBackground">#eceff1</color>
 </resources>
