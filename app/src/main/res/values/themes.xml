@@ -12,14 +12,31 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDark</item>
-        <item name="fontFamily">@font/alef_bold</item>
+        <item name="fontFamily">@font/amiko_semibold</item>
+        <item name="android:windowBackground">@color/parentBackground</item>
     </style>
 
     <style name="TextView.Header" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/alef_bold</item>
+        <item name="fontFamily">@font/amiko_semibold</item>
     </style>
 
     <style name="TextView.SubHeader" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/alef_bold</item>
+        <item name="fontFamily">@font/amiko_semibold</item>
     </style>
+
+    <style name="Theme.KimikoCanvas.Login" parent="Theme.KimikosCanvas">
+        <item name="android:windowBackground">@drawable/marine_creek_2</item>
+    </style>
+
+    <style name="FirebaseUI.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@android:color/white</item>
+        <item name="boxStrokeColor">@color/primaryColor</item>
+        <item name="hintTextColor">@color/primaryDarkColor</item>
+    </style>
+
+    <style name="FirebaseUI.TextInputEditText.EmailField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    <style name="FirebaseUI.TextInputEditText.PasswordField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+
 </resources>
