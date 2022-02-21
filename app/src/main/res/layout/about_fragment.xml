@@ -27,7 +27,7 @@
                     android:id="@+id/logo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/logo_height"
-                    android:background="@color/secondaryDarkColor"
+                    android:background="@color/primaryColor"
                     android:scaleType="centerInside"
                     android:src="@drawable/kc_aperture_foreground"
                     app:layout_constraintEnd_toEndOf="parent"
