@@ -62,4 +62,8 @@ class CanvasViewModel : ViewModel() {
 
         }
     }
+
+    fun clearItemList() {
+        _canvases.value = ArrayList()
+    }
 }
