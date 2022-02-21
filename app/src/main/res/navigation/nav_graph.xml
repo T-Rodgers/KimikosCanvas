@@ -31,10 +31,4 @@
         android:name="com.tdr.app.kimikoscanvas.fragments.AboutFragment"
         android:label="About"
         tools:layout="@layout/about_fragment" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.tdr.app.kimikoscanvas.fragments.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/login_fragment">
-    </fragment>
 </navigation>
