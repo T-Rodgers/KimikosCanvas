@@ -19,14 +19,6 @@ fun TextView.setCanvasText(item: Canvas?) {
     }
 }
 
-@BindingAdapter("canvasPrice")
-fun TextView.setFormattedPrice(item: Canvas?) {
-    item?.let {
-        text = item.price?.let { convertToCurrency(item.price) }
-    }
-
-}
-
 @BindingAdapter("status")
 fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus?) {
     when (status) {
