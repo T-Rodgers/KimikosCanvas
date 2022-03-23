@@ -24,19 +24,15 @@
         <item name="fontFamily">@font/amiko_semibold</item>
     </style>
 
-    <style name="Theme.KimikoCanvas.Login" parent="Theme.KimikosCanvas">
-        <item name="android:windowBackground">@drawable/marine_creek_2</item>
-    </style>
-
     <style name="FirebaseUI.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@android:color/white</item>
         <item name="boxStrokeColor">@color/primaryColor</item>
         <item name="hintTextColor">@color/primaryDarkColor</item>
     </style>
 
-    <style name="FirebaseUI.TextInputEditText.EmailField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+    <style name="FirebaseUI.TextInputEditText.EmailField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
-    <style name="FirebaseUI.TextInputEditText.PasswordField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+    <style name="FirebaseUI.TextInputEditText.PasswordField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
 
 </resources>

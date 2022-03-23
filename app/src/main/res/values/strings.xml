@@ -8,5 +8,6 @@
     <string name="logo_content_description">App Logo</string>
     <string name="login_btn">Login</string>
     <string name="sign_out">Sign Out</string>
-    <string name="login_message">Log-in to view images</string>
+    <string name="login_message">This application contains images of Kimiko\'s Canvas Photography. Please Sign-in to view photos.</string>
+    <string name="error_message">Error retrieving canvases. Try again later</string>
 </resources>

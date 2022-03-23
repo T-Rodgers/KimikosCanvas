@@ -8,13 +8,14 @@ import android.view.View.VISIBLE
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
@@ -22,6 +23,7 @@ import com.tdr.app.kimikoscanvas.canvas.CanvasViewModel
 import com.tdr.app.kimikoscanvas.databinding.ListFragmentBinding
 import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 import com.tdr.app.kimikoscanvas.utils.LoginViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class ListFragment : Fragment() {
@@ -29,7 +31,7 @@ class ListFragment : Fragment() {
     private lateinit var binding: ListFragmentBinding
     private lateinit var adapter: CanvasCardAdapter
     private lateinit var navController: NavController
-    private lateinit var canvasViewModel: CanvasViewModel
+    val _viewModel: CanvasViewModel by viewModel()
 
     private val loginViewModel by viewModels<LoginViewModel>()
 
@@ -39,17 +41,16 @@ class ListFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
         // Inflate the layout for this fragment'
-        canvasViewModel = ViewModelProvider(this).get(CanvasViewModel::class.java)
-        binding.canvasViewModel = canvasViewModel
+        binding.canvasViewModel = _viewModel
         binding.lifecycleOwner = this
 
         adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener { canvas ->
-            canvasViewModel.onNavigateToDetails()
-            canvasViewModel.navigateToDetails.observe(viewLifecycleOwner) {
+            _viewModel.onNavigateToDetails()
+            _viewModel.navigateToDetails.observe(viewLifecycleOwner) {
                 if (it) {
                     this.findNavController()
                         .navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(canvas))
-                    canvasViewModel.doneNavigatingToDetails()
+                    _viewModel.doneNavigatingToDetails()
                 }
             }
 
@@ -60,6 +61,8 @@ class ListFragment : Fragment() {
         binding.loginBtn.setOnClickListener {
             launchSignInFlow()
         }
+
+        observeStatus()
 
         return binding.root
     }
@@ -99,7 +102,7 @@ class ListFragment : Fragment() {
             when (authenticationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
                     removeErrorLayout()
-                    canvasViewModel.retrieveImagesFromDatabase()
+                    _viewModel.retrieveImagesFromDatabase()
                 }
 
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> {
@@ -111,8 +114,21 @@ class ListFragment : Fragment() {
         }
     }
 
+    fun observeStatus() {
+
+        _viewModel.statusMessage.observe(viewLifecycleOwner, { event ->
+            event?.getContentIfNotHandled()?.let {
+                Snackbar.make(requireView(), it, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                    .setAction(R.string.error_message) {
+                        _viewModel.retrieveImagesFromDatabase()
+                    }
+                    .show()
+            }
+        })
+    }
+
     private fun showErrorLayout() {
-        canvasViewModel.clearItemList()
+        _viewModel.clearItemList()
         binding.statusImage.setImageResource(R.drawable.ic_baseline_error_48)
         binding.loginMessage.visibility = VISIBLE
         binding.statusImage.visibility = VISIBLE
@@ -135,7 +151,8 @@ class ListFragment : Fragment() {
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .setIsSmartLockEnabled(false)
-            .setTheme(R.style.Theme_KimikoCanvas_Login)
+            .setTheme(R.style.Theme_KimikosCanvas)
+            .setLogo(R.drawable.kc_logo_black)
             .build()
         signInLauncher.launch(signInIntent)
     }

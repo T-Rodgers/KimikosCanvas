@@ -30,11 +30,14 @@
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
+            android:padding="8dp"
             android:id="@+id/canvas_title"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             app:canvasName="@{canvas}"
+            android:textSize="18sp"
             tools:text="Dripping Branch"
             app:layout_constraintEnd_toEndOf="@+id/canvas_image"
             app:layout_constraintStart_toStartOf="@+id/canvas_image"
@@ -43,7 +46,7 @@
         <fragment
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_margin="8dp"
-            android:id="@+id/map"
+            android:id="@+id/google_map"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
