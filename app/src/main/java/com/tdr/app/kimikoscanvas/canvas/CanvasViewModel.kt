@@ -5,10 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.tdr.app.kimikoscanvas.data.CanvasDTO
-import com.tdr.app.kimikoscanvas.data.CanvasDataSource
-import com.tdr.app.kimikoscanvas.data.Result
 import com.tdr.app.kimikoscanvas.utils.Event
+import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 import kotlinx.coroutines.launch
 
 const val PRODUCTS_PATH = "canvases"
@@ -19,7 +17,7 @@ enum class FirebaseApiStatus {
     ERROR
 }
 
-class CanvasViewModel(app: Application, private val dataSource: CanvasDataSource) :
+class CanvasViewModel(app: Application) :
     AndroidViewModel(app) {
 
     private val _statusMessage = MutableLiveData<Event<String>?>()
@@ -49,28 +47,20 @@ class CanvasViewModel(app: Application, private val dataSource: CanvasDataSource
     fun retrieveImagesFromDatabase() {
         viewModelScope.launch {
             _status.value = FirebaseApiStatus.LOADING
-                val result = dataSource.getCanvases()
-                when (result) {
-                    is Result.Success -> {
-                        val dataList = ArrayList<Canvas>()
-                        dataList.addAll((result.data as List<CanvasDTO>).map { canvas ->
-                            //map the reminder data from the DB to the be ready to be displayed on the UI
-                            Canvas(
-                                canvas.name,
-                                canvas.imageUrl,
-                                canvas.latitude,
-                                canvas.longitude,
-                                canvas.id
-                            )
-                        })
-                        _canvases.value = dataList
-                        _status.value = FirebaseApiStatus.DONE
+
+            try {
+                FirebaseUtils().retrieveCanvases(object : FirebaseUtils.FirebaseServiceCallback {
+                    override fun onProductListCallback(value: List<Canvas>) {
+                        _canvases.value = value
                     }
-                    is Result.Error -> {
-                        _statusMessage.value = Event("Error Retrieving Canvases")
-                        _status.value = FirebaseApiStatus.ERROR
-                    }
-                }
+                })
+
+                _status.value = FirebaseApiStatus.DONE
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _status.value = FirebaseApiStatus.ERROR
+                _statusMessage.value = Event("Firebase is in offline mode. Check internet")
+            }
         }
     }
 
