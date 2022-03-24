@@ -38,6 +38,7 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:canvasName="@{canvas}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/canvas_image"
             app:layout_constraintStart_toStartOf="@+id/canvas_image"
             app:layout_constraintTop_toBottomOf="@+id/canvas_image"
