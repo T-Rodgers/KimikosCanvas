@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -43,13 +45,6 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         map = googleMap
         val latLng = LatLng(canvas.latitude!!, canvas.longitude!!)
         val snippet = "${canvas.latitude}, ${canvas.longitude}"
-        marker = map.addMarker(
-            MarkerOptions()
-                .position(latLng)
-                .snippet(snippet)
-                .title(canvas.name)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
-        )!!
 
         val cameraPosition = CameraPosition.Builder()
             .target(latLng)
@@ -58,6 +53,16 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         val cu = CameraUpdateFactory.newCameraPosition(cameraPosition)
         map.animateCamera(cu)
 
+        val bitmap = ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_local_see_48, null)!!.toBitmap()
+        marker = map.addMarker(
+            MarkerOptions()
+                .position(latLng)
+                .snippet(snippet)
+                .title(canvas.name)
+                .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+        )!!
     }
+
+
 
 }
