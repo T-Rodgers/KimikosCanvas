@@ -41,6 +41,7 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
     item?.let {
         Glide.with(imgView.context)
             .load(item.imageUrl)
+            .centerCrop()
             .placeholder(R.drawable.kc_logo_black)
             .error(R.drawable.ic_baseline_error_48)
             .into(imgView)

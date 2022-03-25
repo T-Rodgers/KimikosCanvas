@@ -18,30 +18,29 @@
         <ImageView
             android:id="@+id/canvas_image"
             android:layout_width="0dp"
-            android:layout_height="255dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
             app:canvasImage="@{canvas}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/canvas_title"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/canvas_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
             android:padding="8dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:canvasName="@{canvas}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/canvas_image"
             app:layout_constraintStart_toStartOf="@+id/canvas_image"
-            app:layout_constraintTop_toBottomOf="@+id/canvas_image"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Dripping Branch" />
 
         <fragment
@@ -49,7 +48,10 @@
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"

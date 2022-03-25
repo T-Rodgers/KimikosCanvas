@@ -1,58 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="canvas"
             type="com.tdr.app.kimikoscanvas.canvas.Canvas" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.DetailsFragment">
+        android:layout_margin="16dp"
+        app:cardElevation="16dp"
+        app:strokeColor="@color/primaryColor"
+        app:strokeWidth="2dp"
+        app:cardCornerRadius="8dp">
 
-        <ImageView
-            android:id="@+id/canvas_image"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="255dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
-            app:canvasImage="@{canvas}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            android:layout_height="match_parent"
+            tools:context=".fragments.DetailsFragment">
 
-        <TextView
-            android:padding="8dp"
-            android:id="@+id/canvas_title"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            app:canvasName="@{canvas}"
-            android:textSize="18sp"
-            tools:text="Dripping Branch"
-            app:layout_constraintEnd_toEndOf="@+id/canvas_image"
-            app:layout_constraintStart_toStartOf="@+id/canvas_image"
-            app:layout_constraintTop_toBottomOf="@+id/canvas_image" />
+            <ImageView
+                android:id="@+id/canvas_image"
+                android:layout_width="match_parent"
+                android:layout_height="255dp"
+                app:canvasImage="@{canvas}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-        <fragment
-            class="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_margin="8dp"
-            android:id="@+id/google_map"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/canvas_title" />
+            <TextView
+                android:id="@+id/canvas_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:canvasName="@{canvas}"
+                app:layout_constraintEnd_toEndOf="@+id/canvas_image"
+                app:layout_constraintStart_toStartOf="@+id/canvas_image"
+                app:layout_constraintTop_toBottomOf="@+id/canvas_image"
+                tools:text="Dripping Branch" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <fragment
+                android:id="@+id/google_map"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/canvas_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

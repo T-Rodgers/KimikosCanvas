@@ -12,29 +12,33 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp">
+        android:layout_margin="6dp"
+        app:cardElevation="12dp"
+        app:strokeColor="@color/primaryColor"
+        app:strokeWidth="2dp"
+        app:cardCornerRadius="8dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/image_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/canvas_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="@dimen/large_elevation"
-            app:cardCornerRadius="@dimen/card_radius"
+            android:layout_height="150dp"
+            android:contentDescription="@{canvas.name}"
+            android:scaleType="centerCrop"
+            app:canvasImage="@{canvas}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:contentDescription="@{canvas.name}"
-                android:id="@+id/canvas_image"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                app:canvasImage="@{canvas}"
-                tools:src="@drawable/kc_logo_black" />
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/kc_logo_black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

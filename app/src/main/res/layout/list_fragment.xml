@@ -10,10 +10,11 @@
             type="com.tdr.app.kimikoscanvas.canvas.CanvasViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/parentBackground"
+
         tools:context=".fragments.ListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
-            android:padding="@dimen/small_padding"
+            android:padding="@dimen/medium_padding"
             app:canvases="@{canvasViewModel.canvases}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,13 +33,13 @@
             tools:listitem="@layout/canvas_list_item" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/login_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="16dp"
+            android:gravity="center"
             android:text="@string/login_message"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
             app:layout_constraintBottom_toTopOf="@id/status_image"
