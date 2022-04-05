@@ -24,12 +24,11 @@
             android:clipToPadding="false"
             android:padding="@dimen/medium_padding"
             app:canvases="@{canvasViewModel.canvases}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="2"
             tools:listitem="@layout/canvas_list_item" />
 
         <TextView
@@ -41,7 +40,7 @@
             android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/login_message"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@id/status_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -1,9 +1,8 @@
-package com.tdr.app.kimikoscanvas.canvas
+package com.tdr.data.firebase
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import java.util.*
-
 
 @Parcelize
 data class Canvas(
@@ -12,6 +11,4 @@ data class Canvas(
     val latitude: Double? = null,
     val longitude: Double? = null,
     val id: String = UUID.randomUUID().toString()
-) :
-    Parcelable {
-}
+) : Parcelable

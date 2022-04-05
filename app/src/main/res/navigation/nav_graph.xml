@@ -23,8 +23,8 @@
         android:label="@string/app_name"
         tools:layout="@layout/details_fragment">
         <argument
-            android:name="selectedImage"
-            app:argType="com.tdr.app.kimikoscanvas.canvas.Canvas" />
+            android:name="selectedCanvas"
+            app:argType="com.tdr.data.firebase.Canvas" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

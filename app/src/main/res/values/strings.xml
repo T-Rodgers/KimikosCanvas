@@ -4,10 +4,10 @@
     <string name="amy_kimiko_rodgers">Amy \"Kimiko\" Rodgers</string>
     <string name="photographer_header">Photographer:</string>
     <string name="portfolio_header">Portfolio:</string>
-    <string name="web_link">Kimikos Canvas Photography\n <a href="https://kimikoscanvas.squarespace.com/" />kimikoscanvas.squarespace.com</string>
+    <string name="web_link"><a href="https://kimikoscanvas.squarespace.com/" />kimikoscanvas.squarespace.com</string>
     <string name="logo_content_description">App Logo</string>
     <string name="login_btn">Login</string>
     <string name="sign_out">Sign Out</string>
-    <string name="login_message">This application contains images of Kimiko\'s Canvas Photography. Please Sign-in to view photos.</string>
+    <string name="login_message">This application contains photos from Kimiko\'s Canvas Photography. Please Sign-in to view photos.</string>
     <string name="error_message">Error retrieving canvases. Try again later</string>
 </resources>

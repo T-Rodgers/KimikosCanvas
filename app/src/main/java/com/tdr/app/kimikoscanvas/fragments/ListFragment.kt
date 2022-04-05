@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,16 +22,18 @@ import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.CanvasViewModel
 import com.tdr.app.kimikoscanvas.databinding.ListFragmentBinding
-import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 import com.tdr.app.kimikoscanvas.utils.LoginViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+@ExperimentalCoroutinesApi
 class ListFragment : Fragment() {
 
     private lateinit var binding: ListFragmentBinding
     private lateinit var adapter: CanvasCardAdapter
     private lateinit var navController: NavController
+
     val _viewModel: CanvasViewModel by viewModel()
 
     private val loginViewModel by viewModels<LoginViewModel>()
@@ -84,7 +87,7 @@ class ListFragment : Fragment() {
         when (item.itemId) {
             R.id.action_sign_out -> AuthUI.getInstance().signOut(requireContext())
                 .addOnCompleteListener {
-                    FirebaseUtils().removeListener()
+                    _viewModel.clearItemList()
                 }
             else -> return item.onNavDestinationSelected(navController)
 
@@ -114,7 +117,13 @@ class ListFragment : Fragment() {
         }
     }
 
-    fun observeStatus() {
+    private fun observeStatus() {
+
+        loginViewModel.authStatus.observe(viewLifecycleOwner, {event ->
+            event?.getContentIfNotHandled()?.let{
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        })
 
         _viewModel.statusMessage.observe(viewLifecycleOwner, { event ->
             event?.getContentIfNotHandled()?.let {
@@ -129,9 +138,7 @@ class ListFragment : Fragment() {
 
     private fun showErrorLayout() {
         _viewModel.clearItemList()
-        binding.statusImage.setImageResource(R.drawable.ic_baseline_error_48)
         binding.loginMessage.visibility = VISIBLE
-        binding.statusImage.visibility = VISIBLE
         binding.loginBtn.visibility = VISIBLE
     }
 

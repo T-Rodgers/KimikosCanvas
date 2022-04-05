@@ -6,10 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.tdr.app.kimikoscanvas.utils.Event
-import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
+import com.tdr.data.firebase.Canvas
+import com.tdr.data.firebase.CanvasRepositoryImpl
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
-const val PRODUCTS_PATH = "canvases"
 
 enum class FirebaseApiStatus {
     DONE,
@@ -17,12 +18,13 @@ enum class FirebaseApiStatus {
     ERROR
 }
 
-class CanvasViewModel(app: Application) :
+@ExperimentalCoroutinesApi
+class CanvasViewModel(app: Application, private val repository: CanvasRepositoryImpl) :
     AndroidViewModel(app) {
 
     private val _statusMessage = MutableLiveData<Event<String>?>()
-    val statusMessage : LiveData<Event<String>?>
-    get() = _statusMessage
+    val statusMessage: LiveData<Event<String>?>
+        get() = _statusMessage
 
     private val _status = MutableLiveData<FirebaseApiStatus>()
     val status: LiveData<FirebaseApiStatus>
@@ -44,25 +46,27 @@ class CanvasViewModel(app: Application) :
         _navigateToDetails.value = false
     }
 
+    @ExperimentalCoroutinesApi
     fun retrieveImagesFromDatabase() {
+        _status.value = FirebaseApiStatus.LOADING
         viewModelScope.launch {
-            _status.value = FirebaseApiStatus.LOADING
+            repository.getCanvasesFromFirebase().collect {
+                when {
+                    it.isSuccess -> {
+                        val list = it.getOrNull()
+                        _canvases.value = list?.let { canvas -> sortByName(canvas) }
+                        _status.postValue(FirebaseApiStatus.DONE)
 
-            try {
-                FirebaseUtils().retrieveCanvases(object : FirebaseUtils.FirebaseServiceCallback {
-                    override fun onProductListCallback(value: List<Canvas>) {
-                        _canvases.value = value
                     }
-                })
-
-                _status.value = FirebaseApiStatus.DONE
-            } catch (e: Exception) {
-                e.printStackTrace()
-                _status.value = FirebaseApiStatus.ERROR
-                _statusMessage.value = Event("Firebase is in offline mode. Check internet")
+                    it.isFailure -> {
+                        it.exceptionOrNull()?.printStackTrace()
+                    }
+                }
             }
         }
     }
+
+    fun sortByName(list: List<Canvas>) = list.sortedBy { it.name }
 
     fun clearItemList() {
         _canvases.value = ArrayList()

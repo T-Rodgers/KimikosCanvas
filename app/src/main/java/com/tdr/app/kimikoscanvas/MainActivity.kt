@@ -8,7 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.tdr.app.kimikoscanvas.databinding.ActivityMainBinding
-import com.tdr.app.kimikoscanvas.utils.FirebaseUtils
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -37,9 +36,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Remove event listener attached to database reference
-    override fun onDestroy() {
-        super.onDestroy()
-        FirebaseUtils().removeListener()
-    }
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="canvas"
-            type="com.tdr.app.kimikoscanvas.canvas.Canvas" />
+            type="com.tdr.data.firebase.Canvas" />
 
     </data>
 
@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        app:cardElevation="16dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,8 +26,9 @@
             <ImageView
                 android:id="@+id/canvas_image"
                 android:layout_width="match_parent"
-                android:layout_height="255dp"
+                android:layout_height="0dp"
                 app:canvasImage="@{canvas}"
+                app:layout_constraintBottom_toTopOf="@+id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,16 +36,15 @@
 
             <TextView
                 android:id="@+id/canvas_title"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
+                android:background="#99000000"
                 android:padding="8dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:canvasName="@{canvas}"
-                app:layout_constraintEnd_toEndOf="@+id/canvas_image"
-                app:layout_constraintStart_toStartOf="@+id/canvas_image"
-                app:layout_constraintTop_toBottomOf="@+id/canvas_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Dripping Branch" />
 
             <fragment
@@ -56,7 +56,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/canvas_title" />
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

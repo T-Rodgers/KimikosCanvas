@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
-import com.tdr.app.kimikoscanvas.canvas.Canvas
 import com.tdr.app.kimikoscanvas.canvas.FirebaseApiStatus
+import com.tdr.data.firebase.Canvas
 
 
 @BindingAdapter("canvasName")

@@ -14,14 +14,13 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.tdr.app.kimikoscanvas.R
-import com.tdr.app.kimikoscanvas.canvas.Canvas
 import com.tdr.app.kimikoscanvas.databinding.DetailsFragmentBinding
 
 class DetailsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding : DetailsFragmentBinding
     private lateinit var map : GoogleMap
-    private lateinit var canvas: Canvas
+    private lateinit var canvas: com.tdr.data.firebase.Canvas
     private lateinit var marker: Marker
 
     override fun onCreateView(
@@ -31,8 +30,9 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.details_fragment, container, false)
 
-        canvas = DetailsFragmentArgs.fromBundle(requireArguments()).selectedImage
+        canvas = DetailsFragmentArgs.fromBundle(requireArguments()).selectedCanvas
         binding.canvas = canvas
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
@@ -62,7 +62,5 @@ class DetailsFragment : Fragment(), OnMapReadyCallback {
                 .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
         )!!
     }
-
-
 
 }
