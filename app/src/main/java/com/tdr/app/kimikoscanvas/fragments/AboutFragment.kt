@@ -9,11 +9,6 @@ import androidx.fragment.app.Fragment
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.databinding.AboutFragmentBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AboutFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AboutFragment : Fragment() {
 
     private lateinit var binding : AboutFragmentBinding

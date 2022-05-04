@@ -8,56 +8,72 @@
 
         <variable
             name="canvas"
-            type="com.tdr.data.firebase.Canvas" />
+            type="com.tdr.app.kimikoscanvas.data.Canvas" />
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/item_layout"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_margin="@dimen/small_margin"
-        app:cardElevation="12dp"
-        app:cardCornerRadius="6dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medium_margin"
+        app:layoutDescription="@xml/canvas_list_item_xml_item_layout_scene">
 
         <ImageView
             android:id="@+id/canvas_image"
-            android:layout_width="72dp"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/list_item_height"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@{canvas.name}"
-            android:scaleType="centerCrop"
+            android:elevation="@dimen/card_elevation"
+            android:scaleType="centerInside"
             app:canvasImage="@{canvas}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/kc_logo_black" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:canvasName="@{canvas}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/canvas_image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Kimiko's Canvas" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:layout_constraintBottom_toBottomOf="@+id/canvas_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/canvas_image">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_baseline_map_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/large_margin"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:paddingStart="@dimen/list_item_card_start"
+                    app:canvasName="@{canvas}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/map_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Kimiko's Canvas" />
+
+                <ImageView
+                    android:id="@+id/map_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/large_margin"
+                    android:src="@drawable/ic_baseline_map_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/go_to_map_cd" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

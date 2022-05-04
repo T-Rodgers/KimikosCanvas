@@ -1,5 +1,5 @@
 # KimikosCanvas
-Application for Kimiko Canvas Photography displays beautiful photographs that can be used as canvaes!
+Application for Kimiko Canvas Photography displays beautiful photographs that can be used as canvases!
 
 ## Building blocks
 This application is built with the following tools

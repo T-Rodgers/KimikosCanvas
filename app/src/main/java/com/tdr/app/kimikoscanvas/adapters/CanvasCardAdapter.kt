@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.tdr.app.kimikoscanvas.data.Canvas
 import com.tdr.app.kimikoscanvas.databinding.CanvasListItemBinding
-import com.tdr.data.firebase.Canvas
 
 class CanvasCardAdapter(private val clickListener: OnClickListener) :
     ListAdapter<Canvas, CanvasCardAdapter.ProductCardViewHolder>(CanvasCardDiffUtilCallback()) {

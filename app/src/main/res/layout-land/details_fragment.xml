@@ -6,7 +6,7 @@
     <data>
         <variable
             name="canvas"
-            type="com.tdr.data.firebase.Canvas" />
+            type="com.tdr.app.kimikoscanvas.data.Canvas" />
 
     </data>
 
@@ -20,25 +20,26 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/medium_margin"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="@dimen/small_margin"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
             app:canvasImage="@{canvas}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="@{canvas.name}" />
 
         <TextView
             android:id="@+id/canvas_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/medium_padding"
-            android:background="#99000000"
+            android:background="@color/title_background_color"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size"
             app:canvasName="@{canvas}"
             app:layout_constraintEnd_toEndOf="@+id/canvas_image"
             app:layout_constraintStart_toStartOf="@+id/canvas_image"
@@ -50,10 +51,10 @@
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"

@@ -22,8 +22,4 @@ class LoginViewModel: ViewModel() {
             AuthenticationState.UNAUTHENTICATED
         }
     }
-
-    fun onSignOut() {
-        _authStatus.value = Event("Logging Out...")
-    }
 }

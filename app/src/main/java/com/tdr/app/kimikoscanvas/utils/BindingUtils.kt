@@ -6,10 +6,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.FirebaseApiStatus
-import com.tdr.data.firebase.Canvas
+import com.tdr.app.kimikoscanvas.data.Canvas
 
 
 @BindingAdapter("canvasName")
@@ -41,8 +42,11 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
     item?.let {
         Glide.with(imgView.context)
             .load(item.imageUrl)
+            .thumbnail(.5f)
             .centerCrop()
-            .placeholder(R.drawable.kc_logo_black)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .override(1200, 1200)
+            .placeholder(R.drawable.loading_animation)
             .error(R.drawable.ic_baseline_error_48)
             .into(imgView)
     }

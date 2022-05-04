@@ -9,14 +9,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
@@ -32,9 +29,8 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: ListFragmentBinding
     private lateinit var adapter: CanvasCardAdapter
-    private lateinit var navController: NavController
 
-    val _viewModel: CanvasViewModel by viewModel()
+    private val _viewModel: CanvasViewModel by viewModel()
 
     private val loginViewModel by viewModels<LoginViewModel>()
 
@@ -78,6 +74,22 @@ class ListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
+
+        loginViewModel.authenticationState.observe(
+            viewLifecycleOwner
+        ) { authenticationState ->
+            when (authenticationState) {
+                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
+                    menu.findItem(R.id.action_sign_out).isEnabled = true
+                }
+
+                LoginViewModel.AuthenticationState.UNAUTHENTICATED -> {
+                    menu.findItem(R.id.action_sign_out).isEnabled = false
+
+                }
+                else -> Timber.i("Unknown Authentication Error")
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -98,19 +110,18 @@ class ListFragment : Fragment() {
 
     private fun observeAuthState() {
 
-        navController = findNavController()
         loginViewModel.authenticationState.observe(
             viewLifecycleOwner
         ) { authenticationState ->
             when (authenticationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                    removeErrorLayout()
+
+                    removeLoginMessage()
                     _viewModel.retrieveImagesFromDatabase()
                 }
 
                 LoginViewModel.AuthenticationState.UNAUTHENTICATED -> {
-
-                    showErrorLayout()
+                    showLoginMessage()
                 }
                 else -> Timber.i("Unknown Authentication Error")
             }
@@ -119,30 +130,20 @@ class ListFragment : Fragment() {
 
     private fun observeStatus() {
 
-        loginViewModel.authStatus.observe(viewLifecycleOwner, {event ->
-            event?.getContentIfNotHandled()?.let{
+        loginViewModel.authStatus.observe(viewLifecycleOwner) { event ->
+            event?.getContentIfNotHandled()?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
-        _viewModel.statusMessage.observe(viewLifecycleOwner, { event ->
-            event?.getContentIfNotHandled()?.let {
-                Snackbar.make(requireView(), it, BaseTransientBottomBar.LENGTH_INDEFINITE)
-                    .setAction(R.string.error_message) {
-                        _viewModel.retrieveImagesFromDatabase()
-                    }
-                    .show()
-            }
-        })
     }
-
-    private fun showErrorLayout() {
+    private fun showLoginMessage() {
         _viewModel.clearItemList()
         binding.loginMessage.visibility = VISIBLE
         binding.loginBtn.visibility = VISIBLE
     }
 
-    private fun removeErrorLayout() {
+    private fun removeLoginMessage() {
         binding.loginMessage.visibility = GONE
         binding.loginBtn.visibility = GONE
     }

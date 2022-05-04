@@ -5,12 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.tdr.app.kimikoscanvas.data.Canvas
+import com.tdr.app.kimikoscanvas.data.CanvasDataSource
 import com.tdr.app.kimikoscanvas.utils.Event
-import com.tdr.data.firebase.Canvas
-import com.tdr.data.firebase.CanvasRepositoryImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 enum class FirebaseApiStatus {
     DONE,
@@ -19,7 +19,7 @@ enum class FirebaseApiStatus {
 }
 
 @ExperimentalCoroutinesApi
-class CanvasViewModel(app: Application, private val repository: CanvasRepositoryImpl) :
+class CanvasViewModel(app: Application, private val dataSource: CanvasDataSource) :
     AndroidViewModel(app) {
 
     private val _statusMessage = MutableLiveData<Event<String>?>()
@@ -50,25 +50,30 @@ class CanvasViewModel(app: Application, private val repository: CanvasRepository
     fun retrieveImagesFromDatabase() {
         _status.value = FirebaseApiStatus.LOADING
         viewModelScope.launch {
-            repository.getCanvasesFromFirebase().collect {
+            dataSource.getCanvasesFromFirebase().collect {
                 when {
                     it.isSuccess -> {
                         val list = it.getOrNull()
                         _canvases.value = list?.let { canvas -> sortByName(canvas) }
-                        _status.postValue(FirebaseApiStatus.DONE)
+                        _status.value = FirebaseApiStatus.DONE
 
                     }
                     it.isFailure -> {
                         it.exceptionOrNull()?.printStackTrace()
+                        Timber.i("Error")
+                        _statusMessage.value = Event("Error")
+                        _status.value = FirebaseApiStatus.ERROR
                     }
                 }
             }
         }
     }
 
-    fun sortByName(list: List<Canvas>) = list.sortedBy { it.name }
+    private fun sortByName(list: List<Canvas>) = list.sortedBy { it.name }
 
     fun clearItemList() {
         _canvases.value = ArrayList()
     }
+
+
 }

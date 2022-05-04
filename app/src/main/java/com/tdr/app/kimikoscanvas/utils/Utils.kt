@@ -1,9 +1,10 @@
 package com.tdr.app.kimikoscanvas.utils
 
-import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
-fun convertToCurrency(price: Int): String {
-    val format = DecimalFormat("$#,###.00")
-    format.isDecimalSeparatorAlwaysShown = false
-    return format.format(price).toString()
+
+fun convertMetersToMiles(meters: Double): Int {
+
+    return (meters * .000621).roundToInt()
+
 }

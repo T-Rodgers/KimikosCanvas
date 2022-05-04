@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/listFragment">
     <fragment
         android:id="@+id/listFragment"
@@ -24,7 +23,7 @@
         tools:layout="@layout/details_fragment">
         <argument
             android:name="selectedCanvas"
-            app:argType="com.tdr.data.firebase.Canvas" />
+            app:argType="com.tdr.app.kimikoscanvas.data.Canvas" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

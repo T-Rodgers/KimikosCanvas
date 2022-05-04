@@ -4,9 +4,9 @@
   <color name="primaryLightColor">#b2fef7</color>
   <color name="primaryDarkColor">#4f9a94</color>
   <color name="secondaryColor">#ffecb3</color>
-  <color name="secondaryLightColor">#ffffe5</color>
-  <color name="secondaryDarkColor">#cbba83</color>
+    <color name="secondaryDarkColor">#cbba83</color>
   <color name="primaryTextColor">#000000</color>
   <color name="secondaryTextColor">#000000</color>
+    <color name="title_background_color">#99000000</color>
 
 </resources>

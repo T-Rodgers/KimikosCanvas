@@ -1,19 +1,21 @@
 package com.tdr.app.kimikoscanvas.utils
 
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Assert.*
+import androidx.test.filters.SmallTest
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
+
+@SmallTest
 class UtilsKtTest {
 
     @Test
-    fun convertPrice_toUsCurrencyFormat() {
-        val price = 30
+    fun metersToMiles_ConversionTest(){
 
-        val result = convertToCurrency(price)
+        val meters = 10000.00
+        val miles = convertMetersToMiles(meters)  // meters * .000621 = miles
 
-        assertThat(result, `is`("$30.00"))
-
+        assertEquals(6, miles)
     }
+
+
 }

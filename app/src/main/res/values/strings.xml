@@ -8,6 +8,13 @@
     <string name="logo_content_description">App Logo</string>
     <string name="login_btn">Login</string>
     <string name="sign_out">Sign Out</string>
+
     <string name="login_message">This application contains photos from Kimiko\'s Canvas Photography. Please Sign-in to view photos.</string>
-    <string name="error_message">Error retrieving canvases. Try again later</string>
+    <string name="location_dialog_message">Location permission is necessary to check how far you are from where this photo was taken. Please enable location permission.</string>
+    <string name="dismiss_dialog">Dismiss</string>
+    <string name="distance_menu_item">Distance from Me</string>
+    <string name="show_on_map_menu_item">Show on Map</string>
+    <string name="brand_logo_cd">Brand Logo</string>
+    <string name="go_to_map_cd">Go to Map</string>
+    <string name="loading_in_progress_cd">Loading in Progress</string>
 </resources>

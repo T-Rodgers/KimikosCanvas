@@ -7,16 +7,16 @@
 
         <variable
             name="canvas"
-            type="com.tdr.data.firebase.Canvas" />
+            type="com.tdr.app.kimikoscanvas.data.Canvas" />
 
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="16dp">
+        android:layout_margin="@dimen/medium_margin"
+        app:cardCornerRadius="@dimen/card_radius"
+        app:cardElevation="@dimen/large_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,20 +28,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:canvasImage="@{canvas}"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/guideline3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="@{canvas.name}" />
 
             <TextView
                 android:id="@+id/canvas_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#99000000"
-                android:padding="8dp"
+                android:background="@color/title_background_color"
+                android:padding="@dimen/medium_padding"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_size"
                 app:canvasName="@{canvas}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +54,7 @@
                 class="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/medium_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
