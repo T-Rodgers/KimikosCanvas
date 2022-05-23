@@ -18,55 +18,76 @@
         app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="@dimen/large_margin">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragments.DetailsFragment">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/canvas_image"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:canvasImage="@{canvas}"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toTopOf="@+id/guideline3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic"
-                android:contentDescription="@{canvas.name}" />
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                tools:context=".fragments.DetailsFragment">
 
-            <TextView
-                android:id="@+id/canvas_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/title_background_color"
-                android:padding="@dimen/medium_padding"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size"
-                app:canvasName="@{canvas}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Dripping Branch" />
+                <ImageView
+                    android:id="@+id/canvas_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:contentDescription="@{canvas.name}"
+                    android:scaleType="centerCrop"
+                    app:canvasImage="@{canvas}"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-            <fragment
-                android:id="@+id/google_map"
-                class="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/medium_margin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent=".5" />
+                <TextView
+                    android:id="@+id/canvas_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/title_background_color"
+                    android:padding="@dimen/medium_padding"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size"
+                    app:canvasName="@{canvas}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Dripping Branch" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <fragment
+                    android:id="@+id/google_map"
+                    class="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent=".5" />
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/info_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:sparkbutton_activeImage="@drawable/ic_action_distance"
+                    app:sparkbutton_iconSize="40dp"
+                    app:sparkbutton_inActiveImage="@drawable/ic_action_distance"
+                    app:sparkbutton_primaryColor="@color/primaryColor"
+                    app:sparkbutton_secondaryColor="@color/primaryLightColor" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

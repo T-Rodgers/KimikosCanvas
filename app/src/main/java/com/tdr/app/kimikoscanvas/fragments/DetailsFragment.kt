@@ -78,6 +78,11 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
                 }
             }
 
+        binding.infoButton?.setOnClickListener {
+            binding.infoButton?.playAnimation()
+            showDistanceInfo()
+        }
+
         setHasOptionsMenu(true)
 
         observeConnection()
@@ -258,7 +263,6 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_distance_info -> showDistanceInfo()
             R.id.action_show_on_map -> showCanvasLocationOnMap()
             else ->
                 return super.onOptionsItemSelected(item)
