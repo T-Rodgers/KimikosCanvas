@@ -42,10 +42,8 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
     item?.let {
         Glide.with(imgView.context)
             .load(item.imageUrl)
-            .thumbnail(.5f)
-            .centerCrop()
+            .fitCenter()
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .override(1200, 1200)
             .placeholder(R.drawable.loading_animation)
             .error(R.drawable.ic_baseline_error_48)
             .into(imgView)
