@@ -6,7 +6,11 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils.fitCenter
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.transition.Transition
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.FirebaseApiStatus
@@ -42,9 +46,9 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
     item?.let {
         Glide.with(imgView.context)
             .load(item.imageUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .fitCenter()
             .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .placeholder(R.drawable.loading_animation)
             .error(R.drawable.ic_baseline_error_48)
             .into(imgView)
     }

@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -44,21 +47,31 @@ class ListFragment : Fragment() {
         binding.canvasViewModel = _viewModel
         binding.lifecycleOwner = this
 
-        adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener { canvas ->
+        adapter = CanvasCardAdapter(CanvasCardAdapter.OnClickListener { canvas, canvasImageView ->
             _viewModel.onNavigateToDetails()
+            val action = ListFragmentDirections.actionListFragmentToDetailsFragment(canvas)
             _viewModel.navigateToDetails.observe(viewLifecycleOwner) {
                 if (it) {
                     this.findNavController()
-                        .navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(canvas))
+                        .navigate(
+                            action, FragmentNavigator.Extras.Builder()
+                                .addSharedElements(
+                                    mapOf(canvasImageView to canvasImageView.transitionName)
+                                ).build()
+                        )
                     _viewModel.doneNavigatingToDetails()
+
                 }
             }
-
         })
-        val staggeredLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        val staggeredLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         binding.recyclerView.layoutManager = staggeredLayoutManager
         binding.recyclerView.adapter = adapter
-        setHasOptionsMenu(true)
+
+
 
         binding.loginBtn.setOnClickListener {
             launchSignInFlow()
@@ -66,11 +79,20 @@ class ListFragment : Fragment() {
 
         observeStatus()
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        postponeEnterTransition()
+        binding.recyclerView.viewTreeObserver
+            .addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
 
         observeAuthState()
     }
@@ -140,6 +162,7 @@ class ListFragment : Fragment() {
         }
 
     }
+
     private fun showLoginMessage() {
         _viewModel.clearItemList()
         binding.loginMessage.visibility = VISIBLE

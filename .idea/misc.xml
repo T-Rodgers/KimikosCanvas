@@ -6,30 +6,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Terrence - DE/Documents/AndroidProjects/KimikosCanvas/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.3675" />
+        <entry key="..\:/Users/Terrence - DE/Documents/AndroidProjects/KimikosCanvas/app/src/main/res/drawable/kc_aperture_foreground.xml" value="0.36" />
+        <entry key="..\:/Users/Terrence - DE/Documents/AndroidProjects/KimikosCanvas/app/src/main/res/layout/canvas_list_item.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Terrence - DE/Documents/AndroidProjects/KimikosCanvas/app/src/main/res/layout/details_fragment.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Terrence - DE/Documents/AndroidProjects/KimikosCanvas/app/src/main/res/layout/list_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/tdr00/AndroidStudioProjects/KimikosCanvas/app/src/main/res/layout/details_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/tdr00/AndroidStudioProjects/KimikosCanvas/app/src/main/res/layout/list_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.31851851851851853" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_error_108.xml" value="0.3351851851851852" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.21875" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_error_48.xml" value="0.31851851851851853" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_local_see_48.xml" value="0.21145833333333333" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.1935" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.21875" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/drawable/kc_aperture_foreground.xml" value="0.21875" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/font/alef_bold.xml" value="0.2328125" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/font/brawler.xml" value="0.23333333333333334" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout-land/about_fragment.xml" value="0.39520333680917624" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout-land/details_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout-land/list_fragment.xml" value="0.32802547770700635" />
+        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout-land/details_fragment.xml" value="0.2828125" />
+        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout-land/list_fragment.xml" value="0.3504504504504504" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/about_fragment.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/activity_main.xml" value="0.2430939226519337" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/canvas_list_item.xml" value="0.19722222222222222" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/details_fragment.xml" value="0.3625" />
+        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/canvas_list_item.xml" value="0.3527777777777778" />
+        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/details_fragment.xml" value="0.3527777777777778" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/fragment_login.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/list_fragment.xml" value="0.22857142857142856" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/login_fragment.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/layout/nav_header.xml" value="0.3527777777777778" />
-        <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/menu/details_menu.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/menu/nav_drawer_menu.xml" value="0.203125" />
         <entry key="..\:/Users/tdr00/Desktop/AndroidDevelopment/UdacityKotlinNanodegree/KimikosCanvas/app/src/main/res/menu/overflow_menu.xml" value="0.203125" />
       </map>
@@ -40,12 +41,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.2828125" />
-      </ProjectState>
-    </option>
   </component>
 </project>

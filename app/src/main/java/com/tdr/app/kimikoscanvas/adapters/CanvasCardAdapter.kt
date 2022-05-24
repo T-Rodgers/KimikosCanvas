@@ -1,10 +1,14 @@
 package com.tdr.app.kimikoscanvas.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.view.ViewCompat.setTransitionName
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.data.Canvas
 import com.tdr.app.kimikoscanvas.databinding.CanvasListItemBinding
 
@@ -20,8 +24,9 @@ class CanvasCardAdapter(private val clickListener: OnClickListener) :
 
     override fun onBindViewHolder(holder: ProductCardViewHolder, position: Int) {
         val item = getItem(position)
+        val view = holder.itemView.findViewById<ImageView>(R.id.canvas_image)
         holder.itemView.setOnClickListener {
-            clickListener.onClick(item)
+            clickListener.onClick(item, view)
         }
         holder.bind(item)
     }
@@ -43,8 +48,8 @@ class CanvasCardAdapter(private val clickListener: OnClickListener) :
         }
     }
 
-    class OnClickListener(val clickListener: (canvas: Canvas) -> Unit) {
-        fun onClick(canvas: Canvas) = clickListener(canvas)
+    class OnClickListener(val clickListener: (canvas: Canvas, canvasImageView: ImageView) -> Unit) {
+        fun onClick(canvas: Canvas, canvasImageView: ImageView) = clickListener(canvas, canvasImageView)
     }
 
     class CanvasCardDiffUtilCallback : DiffUtil.ItemCallback<Canvas>() {

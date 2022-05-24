@@ -15,19 +15,20 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
         android:elevation="12dp">
 
 
-            <ImageView
-                android:id="@+id/canvas_image"
-                android:layout_width="match_parent"
-                android:adjustViewBounds="true"
-                android:layout_margin="@dimen/small_margin"
-                android:layout_height="wrap_content"
-                android:contentDescription="@{canvas.name}"
-                app:canvasImage="@{canvas}"
-                tools:src="@drawable/kc_logo_black" />
+        <ImageView
+            android:id="@+id/canvas_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:transitionName="@{@string/transition_name(canvas.name)}"
+            android:contentDescription="@{canvas.name}"
+            app:canvasImage="@{canvas}"
+            tools:src="@drawable/kc_logo_black" />
 
 
-        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

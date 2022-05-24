@@ -15,6 +15,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.transition.TransitionInflater
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -59,6 +60,8 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
         binding.canvas = canvas
         binding.lifecycleOwner = viewLifecycleOwner
 
+
+
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -88,6 +91,13 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
         observeConnection()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        sharedElementEnterTransition =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+
+        binding.executePendingBindings()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
