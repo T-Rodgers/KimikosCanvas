@@ -10,7 +10,6 @@ import com.tdr.app.kimikoscanvas.data.CanvasDataSource
 import com.tdr.app.kimikoscanvas.utils.Event
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 enum class FirebaseApiStatus {
     DONE,
@@ -46,6 +45,10 @@ class CanvasViewModel(app: Application, private val dataSource: CanvasDataSource
         _navigateToDetails.value = false
     }
 
+    init {
+        retrieveImagesFromDatabase()
+    }
+
     @ExperimentalCoroutinesApi
     fun retrieveImagesFromDatabase() {
         _status.value = FirebaseApiStatus.LOADING
@@ -60,7 +63,6 @@ class CanvasViewModel(app: Application, private val dataSource: CanvasDataSource
                     }
                     it.isFailure -> {
                         it.exceptionOrNull()?.printStackTrace()
-                        Timber.i("Error")
                         _statusMessage.value = Event("Error")
                         _status.value = FirebaseApiStatus.ERROR
                     }
