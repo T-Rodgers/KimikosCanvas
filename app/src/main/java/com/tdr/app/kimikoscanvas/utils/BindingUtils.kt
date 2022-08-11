@@ -6,11 +6,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.TransformationUtils.fitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.Transition
 import com.tdr.app.kimikoscanvas.R
 import com.tdr.app.kimikoscanvas.adapters.CanvasCardAdapter
 import com.tdr.app.kimikoscanvas.canvas.FirebaseApiStatus
@@ -35,9 +32,23 @@ fun bindStatus(statusImageView: ImageView, status: FirebaseApiStatus?) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_baseline_error_48)
         }
-        FirebaseApiStatus.DONE -> {
+        else -> {
             statusImageView.visibility = View.GONE
         }
+
+    }
+}
+
+@BindingAdapter("canvasListImage")
+fun setCanvasListImage(imgView: ImageView, item: Canvas?) {
+    item?.let {
+        Glide.with(imgView.context)
+            .load(item.imageUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .fitCenter()
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .error(R.drawable.ic_baseline_error_48)
+            .into(imgView)
     }
 }
 
@@ -47,7 +58,7 @@ fun setCanvasImage(imgView: ImageView, item: Canvas?) {
         Glide.with(imgView.context)
             .load(item.imageUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .fitCenter()
+            .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .error(R.drawable.ic_baseline_error_48)
             .into(imgView)
