@@ -4,7 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -60,8 +62,6 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
         binding.canvas = canvas
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -73,11 +73,11 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
                 ActivityResultContracts.RequestPermission()
             ) { isGranted: Boolean ->
                 if (isGranted) {
-                    getUserLocation()
+                    showCanvasLocationOnMap()
                 } else {
                     Timber.i("registerForActivityResult")
 
-                    showLocationDialog()
+                    showPermissionRationaleMessage()
                 }
             }
 
@@ -129,7 +129,10 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
                     in 501..1400 -> "Road trip! Your about ${convertedDistance}mi from here!"
                     else -> "Plan a vacation! This place is ${convertedDistance}mi from you!"
                 }
+            showCanvasLocationOnMap()
+
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+
 
         } catch (e: UninitializedPropertyAccessException) {
             Timber.i(e.message)
@@ -172,14 +175,14 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
             ) == PackageManager.PERMISSION_GRANTED -> {
                 Timber.i("permission granted")
                 // You can use the API that requires the permission.
-                getUserLocation()
+                showCanvasLocationOnMap()
             }
 
 
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
                 Timber.i("Show Rationale")
 
-                showLocationDialog()
+                showPermissionRationaleMessage()
             }
 
             else -> {
@@ -234,7 +237,7 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
         })
     }
 
-    private fun showLocationDialog() {
+    private fun showPermissionRationaleMessage() {
         val alertDialog: AlertDialog = requireActivity().let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
@@ -266,18 +269,4 @@ class DetailsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationBu
 
         alertDialog.show()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.details_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_show_on_map -> showCanvasLocationOnMap()
-            else ->
-                return super.onOptionsItemSelected(item)
-        }
-        return true
-    }
-
 }
