@@ -70,8 +70,8 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.2"
 
     //Koin
-    implementation "org.koin:koin-android:2.0.1"
-    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
+    implementation "io.insert-koin:koin-android:3.2.0"
+//    implementation "io.insert-koin:koin-androidx-viewmodel:2.0.1"
 
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
