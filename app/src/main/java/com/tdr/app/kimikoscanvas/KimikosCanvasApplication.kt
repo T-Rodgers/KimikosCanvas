@@ -1,3 +1,5 @@
+@file:Suppress("KotlinDeprecation")
+
 package com.tdr.app.kimikoscanvas
 
 import android.app.Application
