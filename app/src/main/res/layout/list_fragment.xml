@@ -22,26 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/small_padding"
+            android:clipToPadding="false"
             app:canvases="@{canvasViewModel.canvases}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/canvas_list_item" />
-
-        <TextView
-            android:id="@+id/login_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_message_margin"
-            android:layout_marginEnd="@dimen/login_message_margin"
-            android:layout_marginBottom="@dimen/large_margin"
-            android:gravity="center"
-            android:text="@string/login_message"
-            android:textSize="@dimen/login_message_text_size"
-            app:layout_constraintBottom_toTopOf="@id/status_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/status_image"
@@ -53,19 +40,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:status="@{canvasViewModel.status}" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginEnd="@dimen/large_margin"
-            android:text="@string/login_btn"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/status_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

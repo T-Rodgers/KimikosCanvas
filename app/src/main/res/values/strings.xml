@@ -19,4 +19,5 @@
     <string name="loading_in_progress_cd">Loading in Progress</string>
 
     <string name="transition_name">canvas %s</string>
+    <string name="title_activity_main_screen">MainScreen</string>
 </resources>
